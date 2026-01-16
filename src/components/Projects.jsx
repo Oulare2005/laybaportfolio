@@ -83,9 +83,9 @@ const Projects = () => {
     },
     {
       icon: <FaBus />,
-      title: 'TransportBus – Application Android',
+      title: 'TransportBus - Application Android',
       year: '2024',
-      context: 'Projet personnel – Mobile',
+      context: 'Projet personnel - Mobile',
       description: 'Application Android orientée mobilité et transport, développée pour approfondir les compétences en développement mobile et UX.',
       tech: ['Android', 'Mobile', 'UX'],
       category: 'Mobile',
@@ -93,9 +93,9 @@ const Projects = () => {
     },
     {
       icon: <FaWallet />,
-      title: 'PayGuiné – Application Flutter',
+      title: 'PayGuiné - Application Flutter',
       year: '2024',
-      context: 'Projet personnel – Entrepreneurial',
+      context: 'Projet personnel - Entrepreneurial',
       description: 'Application mobile Flutter orientée services numériques et paiement, à vocation entrepreneuriale.',
       tech: ['Flutter', 'Mobile', 'Fintech'],
       category: 'Mobile / Fintech',
