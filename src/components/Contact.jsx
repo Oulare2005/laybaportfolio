@@ -1,6 +1,7 @@
 import { useState } from 'react';
-import { FiMail, FiMapPin, FiLinkedin, FiGithub, FiSend } from 'react-icons/fi';
+import { FiMail, FiMapPin, FiLinkedin, FiGithub, FiSend, FiCheck, FiAlertCircle } from 'react-icons/fi';
 import { useLanguage } from '../LanguageContext';
+import emailjs from '@emailjs/browser';
 
 const Contact = () => {
   const { t } = useLanguage();
@@ -10,6 +11,8 @@ const Contact = () => {
     subject: '',
     message: ''
   });
+  const [status, setStatus] = useState({ type: '', message: '' });
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleChange = (e) => {
     setFormData({
@@ -20,8 +23,32 @@ const Contact = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const mailtoLink = `mailto:oularelayba05@gmail.com?subject=${encodeURIComponent(formData.subject)}&body=${encodeURIComponent(`De: ${formData.name} (${formData.email})\n\n${formData.message}`)}`;
-    window.location.href = mailtoLink;
+    setIsLoading(true);
+    setStatus({ type: '', message: '' });
+
+    const templateParams = {
+      name: formData.name,
+      email: formData.email,
+      title: formData.subject,
+      message: formData.message
+    };
+
+    emailjs.send(
+      'service_dkkcp1s',
+      'template_o06o9f6',
+      templateParams,
+      '2c3dyrOGKmKMznlG5'
+    )
+    .then(() => {
+      setStatus({ type: 'success', message: t.contact.form.successMessage || 'Message envoyé avec succès!' });
+      setFormData({ name: '', email: '', subject: '', message: '' });
+    })
+    .catch(() => {
+      setStatus({ type: 'error', message: t.contact.form.errorMessage || 'Erreur lors de l\'envoi. Veuillez réessayer.' });
+    })
+    .finally(() => {
+      setIsLoading(false);
+    });
   };
 
   return (
@@ -87,6 +114,13 @@ const Contact = () => {
           </div>
 
           <form className="contact-form" onSubmit={handleSubmit}>
+            {status.message && (
+              <div className={`form-message ${status.type}`}>
+                {status.type === 'success' ? <FiCheck /> : <FiAlertCircle />}
+                {status.message}
+              </div>
+            )}
+
             <div className="form-group">
               <label htmlFor="name">{t.contact.form.name}</label>
               <input
@@ -97,6 +131,7 @@ const Contact = () => {
                 onChange={handleChange}
                 placeholder={t.contact.form.namePlaceholder}
                 required
+                disabled={isLoading}
               />
             </div>
 
@@ -110,6 +145,7 @@ const Contact = () => {
                 onChange={handleChange}
                 placeholder={t.contact.form.emailPlaceholder}
                 required
+                disabled={isLoading}
               />
             </div>
 
@@ -123,6 +159,7 @@ const Contact = () => {
                 onChange={handleChange}
                 placeholder={t.contact.form.subjectPlaceholder}
                 required
+                disabled={isLoading}
               />
             </div>
 
@@ -135,11 +172,12 @@ const Contact = () => {
                 onChange={handleChange}
                 placeholder={t.contact.form.messagePlaceholder}
                 required
+                disabled={isLoading}
               ></textarea>
             </div>
 
-            <button type="submit" className="btn btn-primary">
-              <FiSend /> {t.contact.form.send}
+            <button type="submit" className="btn btn-primary" disabled={isLoading}>
+              <FiSend /> {isLoading ? 'Envoi en cours...' : t.contact.form.send}
             </button>
           </form>
         </div>
