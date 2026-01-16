@@ -1,6 +1,6 @@
 import { useRef } from 'react';
 import { FiGithub, FiDownload, FiChevronLeft, FiChevronRight } from 'react-icons/fi';
-import { FaShieldAlt, FaLink, FaMobileAlt, FaSearch, FaUserLock, FaBus } from 'react-icons/fa';
+import { FaShieldAlt, FaLink, FaMobileAlt, FaSearch, FaUserLock, FaBus, FaWallet } from 'react-icons/fa';
 import { useLanguage } from '../LanguageContext';
 
 const Projects = () => {
@@ -79,6 +79,26 @@ const Projects = () => {
       description: 'Application Android permettant de rechercher, annoncer et réserver des trajets.',
       tech: ['Android', 'Java', 'UI/UX', 'Mobile'],
       category: 'Mobile',
+      report: null
+    },
+    {
+      icon: <FaBus />,
+      title: 'TransportBus – Application Android',
+      year: '2024',
+      context: 'Projet personnel – Mobile',
+      description: 'Application Android orientée mobilité et transport, développée pour approfondir les compétences en développement mobile et UX.',
+      tech: ['Android', 'Mobile', 'UX'],
+      category: 'Mobile',
+      report: null
+    },
+    {
+      icon: <FaWallet />,
+      title: 'PayGuiné – Application Flutter',
+      year: '2024',
+      context: 'Projet personnel – Entrepreneurial',
+      description: 'Application mobile Flutter orientée services numériques et paiement, à vocation entrepreneuriale.',
+      tech: ['Flutter', 'Mobile', 'Fintech'],
+      category: 'Mobile / Fintech',
       report: null
     }
   ];
