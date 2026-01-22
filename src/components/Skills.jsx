@@ -58,6 +58,7 @@ const Skills = () => {
   const certifications = [
     { name: 'CompTIA Security+', status: t.skills.certifications.status.preparation },
     { name: 'Google Cybersecurity Professional', status: t.skills.certifications.status.preparation },
+    { name: 'Créativité & prototypage rapide - Montréal', status: '2026' },
     { name: 'Google IT Support Professional', status: t.skills.certifications.status.inProgress },
     { name: 'Créativité & prototypage rapide - Montréal', status: '2024' },
     { name: 'Réseautage et téléphonie (VoIP / ToIP)', status: '2023' }
